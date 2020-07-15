@@ -6,6 +6,11 @@
       opacity: 1;
       pointer-events: auto;
     }
+
+    .social-block__link {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
 
@@ -35,6 +40,7 @@
     background-color: $c-light;
     border: 2px solid $c-light;
     z-index: -1;
+    transition: width 0.3s ease, height 0.3s ease;
   }
 
   svg {
@@ -89,6 +95,7 @@
   margin-top: 1.5rem;
   opacity: 0;
   pointer-events: none;
+  transition: opacity 0.3s ease;
 
   @media (min-width: $stop-scaling) {
     margin-top: 15px;
@@ -146,6 +153,12 @@
     flex: none;
     margin-bottom: 0.5rem;
 
+    @for $i from 1 through 3 {
+      &:nth-child(#{$i}) > a {
+        transition: 0.3s ease #{100 * $i}ms, color 0.3s;
+      }
+    }
+
     @media (min-width: $stop-scaling) {
       margin-bottom: 5px;
     }
@@ -168,6 +181,9 @@
   color: $c-light;
   border: 2px solid transparent;
   border-radius: 50%;
+  opacity: 0;
+  transition: transform, color 0.3s ease;
+  transform: translateY(5px);
 
   @media (min-width: $stop-scaling) {
     width: 40px;
