@@ -58,3 +58,17 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+@mixin text-block-animation-up {
+  animation: fade-top 0.5s ease;
+}
+
+@mixin slider-text-animation($delay) {
+  animation: fade-left 0.5s ease $delay;
+  animation-fill-mode: forwards;
+}
+
+@mixin field-appearance-animation {
+  animation: field-appearance 0.5s ease-out;
+  animation-fill-mode: forwards;
+}

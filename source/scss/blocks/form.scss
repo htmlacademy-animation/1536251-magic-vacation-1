@@ -35,6 +35,7 @@
   padding: 0 5.6rem;
   height: 6rem;
   width: calc(100% - 21rem);
+  margin-left: auto;
   text-transform: uppercase;
   font: inherit;
   font-size: 2.4rem;
@@ -79,8 +80,6 @@
 }
 
 .form__button {
-  flex-grow: 1;
-
   @media (orientation: portrait) {
     position: relative;
     flex: none;
@@ -145,4 +144,8 @@
       width: calc(100% - 5rem);
     }
   }
+}
+
+.screen--game.active .form__field {
+  @include field-appearance-animation;
 }

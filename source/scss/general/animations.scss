@@ -1,0 +1,33 @@
+@keyframes field-appearance {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: calc(100% - 21rem);
+  }
+}
+
+@keyframes fade-top {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-left {
+  from {
+    transform: translateX(10px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

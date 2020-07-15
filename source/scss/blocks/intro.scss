@@ -162,3 +162,7 @@
     font-size: 48px;
   }
 }
+
+.screen--intro.active .intro__message {
+  @include text-block-animation-up;
+}
