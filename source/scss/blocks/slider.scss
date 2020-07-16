@@ -98,6 +98,14 @@
   line-height: 2rem;
   opacity: 0;
 
+  .swiper-slide-active & {
+    @include slider-text-animation(200ms);
+  }
+
+  .swiper-slide-next & {
+    @include slider-text-animation(400ms);
+  }
+
   @media (min-width: $stop-scaling) {
     margin-top: 36px;
     max-width: 340px;
@@ -278,11 +286,3 @@
   }
 }
 
-
-.swiper-slide-active .slider__item-text {
-  @include slider-text-animation(200ms);
-}
-
-.swiper-slide-next .slider__item-text {
-  @include slider-text-animation(400ms);
-}

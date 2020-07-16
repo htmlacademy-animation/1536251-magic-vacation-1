@@ -45,6 +45,10 @@
   border-radius: 3rem;
   outline: none;
 
+  .screen--game.active & {
+    @include field-appearance-animation;
+  }
+
   &:focus {
     border: 1px solid $c-purple;
   }
@@ -144,8 +148,4 @@
       width: calc(100% - 5rem);
     }
   }
-}
-
-.screen--game.active .form__field {
-  @include field-appearance-animation;
 }

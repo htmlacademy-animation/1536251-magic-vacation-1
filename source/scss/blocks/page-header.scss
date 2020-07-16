@@ -7,7 +7,19 @@
   z-index: 10;
   opacity: 0;
   pointer-events: none;
-  transition: 1s $timing-function-50-80;
+
+  transition-property: opacity;
+  transition-duration: 1s;
+  transition-timing-function: $timing-function-50-80;
+
+  body.active & {
+    opacity: 1;
+    pointer-events: auto;
+
+    &__logo {
+      transform: translateX(0);
+    }
+  }
 
   @media (min-width: $stop-scaling) {
     padding: 27px 0;
@@ -38,7 +50,11 @@
   padding: 1rem 0;
   width: 10rem;
   color: $c-light;
-  transition: 0.5s $timing-function-50-80;
+
+  transition-property: transform;
+  transition-duration: 0.5s;
+  transition-timing-function: $timing-function-50-80;
+
   transform: translateX(-10px);
 
   @media (min-width: $stop-scaling) {
@@ -183,6 +199,18 @@
   line-height: 1.0418;
   color: $c-light;
 
+  body.active & {
+    a {
+      &.active,
+      &:hover {
+        &::after {
+          width: 100%;
+          left: 0;
+        }
+      }
+    }
+  }
+
   @media (min-width: $stop-scaling) {
     font-size: 12px;
   }
@@ -247,7 +275,8 @@
     color: inherit;
     padding: 0 0.5em 0.5em;
 
-    transition: 0.3s;
+    transition-property: color;
+    transition-duration: 0.3s;
 
     &::after {
       content: "";
@@ -301,28 +330,5 @@
   @media (max-width: $mobile) and (orientation: landscape) {
     margin-left: 0;
     width: 100%;
-  }
-}
-
-body.active {
-  .page-header {
-    opacity: 1;
-    pointer-events: auto;
-
-    &__logo {
-      transform: translateX(0);
-    }
-  }
-
-  .page-header__menu {
-    a {
-      &.active,
-      &:hover {
-        &::after {
-          width: 100%;
-          left: 0;
-        }
-      }
-    }
   }
 }
