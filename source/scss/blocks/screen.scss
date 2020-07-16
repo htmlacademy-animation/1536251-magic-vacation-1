@@ -46,6 +46,8 @@
   color: $c-dark;
   background-color: $c-light;
   z-index: 1;
+  transform: translateY(100%);
+  transition: 0.3s $timing-function-50-80;
 
   @media (max-width: $tablet) and (orientation: portrait) {
     width: 3.5rem;
@@ -353,4 +355,10 @@
 
 .screen--rules {
   background-color: $c-dark;
+}
+
+body.active {
+  .screen__footer {
+    transform: translateY(0);
+  }
 }
