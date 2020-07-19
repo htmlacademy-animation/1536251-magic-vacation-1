@@ -73,6 +73,10 @@
   width: 50rem;
   max-width: 50%;
 
+  .screen--intro.active & {
+    @include text-block-animation-up;
+  }
+
   @media (min-width: $stop-scaling) {
     width: 500px;
   }

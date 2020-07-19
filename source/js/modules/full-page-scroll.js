@@ -3,9 +3,11 @@ import throttle from 'lodash/throttle';
 export default class FullPageScroll {
   constructor() {
     this.THROTTLE_TIMEOUT = 2000;
+    this.PRIZES_HREF = `prizes`;
 
     this.screenElements = document.querySelectorAll(`.screen:not(.screen--result)`);
     this.menuElements = document.querySelectorAll(`.page-header__menu .js-menu-link`);
+    this.animatedBg = document.querySelector(`.screen__bg-fill`);
 
     this.activeScreen = 0;
     this.onScrollHandler = this.onScroll.bind(this);
@@ -27,14 +29,22 @@ export default class FullPageScroll {
     }
   }
 
-  onUrlHashChanged() {
+  onUrlHashChanged(e) {
     const newIndex = Array.from(this.screenElements).findIndex((screen) => location.hash.slice(1) === screen.id);
     this.activeScreen = (newIndex < 0) ? 0 : newIndex;
-    this.changePageDisplay();
+    this.changePageDisplay(e);
   }
 
-  changePageDisplay() {
-    this.changeVisibilityDisplay();
+  changePageDisplay(event = null) {
+    if (event && this.screenElements[this.activeScreen].id === this.PRIZES_HREF && !document.querySelector(`.screen--prizes.active`)) {
+      this.animatedBg.classList.add(`screen__bg-fill--active`);
+      setTimeout(() => {
+        this.changeVisibilityDisplay();
+        this.animatedBg.classList.remove(`screen__bg-fill--active`);
+      }, 300);
+    } else {
+      this.changeVisibilityDisplay();
+    }
     this.changeActiveMenuItem();
     this.emitChangeDisplayEvent();
   }
