@@ -22,12 +22,44 @@
 
 @keyframes fade-left {
   from {
-    transform: translateX(10px);
+    transform: translateX(15px);
     opacity: 0;
   }
 
   to {
     transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes rules-number-appearance {
+  from {
+    font-size: 0;
+  }
+
+  80% {
+    transform: scale(1.2);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes rules-link-appearance {
+  from {
+    width: 10%;
+  }
+
+  to {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+@keyframes rules-link-text {
+  to {
+    color: $c-dark;
     opacity: 1;
   }
 }
