@@ -1,5 +1,6 @@
 $rules-number-multiplier: 200;
 $rules-text-multiplier: 250;
+$rules-count: 4;
 
 .rules {
   position: relative;
@@ -151,7 +152,7 @@ $rules-text-multiplier: 250;
     font-size: 1.2rem;
   }
 
-  @for $i from 1 through 4 {
+  @for $i from 1 through $rules-count {
     &:nth-child(#{$i}) p {
       animation-name: fade-left;
       animation-duration: 0.5s;
@@ -219,7 +220,7 @@ $rules-text-multiplier: 250;
 
   animation-name: rules-link-text;
   animation-duration: 0.3s;
-  animation-delay: #{$rules-text-multiplier * 4 + 300}ms;
+  animation-delay: #{$rules-text-multiplier * $rules-count + 300}ms;
   animation-fill-mode: forwards;
 
   &::before {
@@ -231,7 +232,7 @@ $rules-text-multiplier: 250;
     transform: none;
 
     animation-name: rules-link-appearance;
-    animation-delay: #{$rules-text-multiplier * 4}ms;
+    animation-delay: #{$rules-text-multiplier * $rules-count}ms;
     animation-duration: 0.5s;
     animation-fill-mode: forwards;
   }

@@ -59,6 +59,8 @@
   font-size: 2.4rem;
   line-height: 1.2;
 
+  @include text-block-animation-up;
+
   @media (min-width: $stop-scaling) {
     margin-left: 58px;
     margin-bottom: -56px;
@@ -94,6 +96,13 @@
   justify-content: flex-end;
   align-items: flex-end;
   margin-top: auto;
+
+  .screen--prizes.active & {
+    animation-name: fade;
+    animation-duration: 700ms;
+    animation-delay: 100ms;
+    animation-fill-mode: both;
+  }
 
   @media (max-width: $tablet) and (orientation: portrait) {
     flex-direction: column;
