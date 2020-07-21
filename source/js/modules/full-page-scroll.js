@@ -1,15 +1,20 @@
 import throttle from 'lodash/throttle';
+import AnimationRunner from "./AnimationRunner";
+
+const FILLED_BG_ANIMATION_DELAY = 400;
 
 export default class FullPageScroll {
   constructor() {
     this.THROTTLE_TIMEOUT = 2000;
     this.PRIZES_HREF = `prizes`;
+    this.STORY_HREF = `story`;
 
     this.screenElements = document.querySelectorAll(`.screen:not(.screen--result)`);
     this.menuElements = document.querySelectorAll(`.page-header__menu .js-menu-link`);
-    this.animatedBg = document.querySelector(`.screen__bg-fill`);
+    this.animatedBg = new AnimationRunner(`.screen-overlay`, `screen-overlay--active`, `screen-overlay--hidden`);
 
     this.activeScreen = 0;
+    this.prevActiveScreen = this.activeScreen;
     this.onScrollHandler = this.onScroll.bind(this);
     this.onUrlHashChengedHandler = this.onUrlHashChanged.bind(this);
   }
@@ -25,24 +30,31 @@ export default class FullPageScroll {
     const currentPosition = this.activeScreen;
     this.reCalculateActiveScreenPosition(evt.deltaY);
     if (currentPosition !== this.activeScreen) {
-      this.changePageDisplay();
+      this.changePageDisplay(evt);
     }
   }
 
   onUrlHashChanged(e) {
     const newIndex = Array.from(this.screenElements).findIndex((screen) => location.hash.slice(1) === screen.id);
+    this.prevActiveScreen = this.activeScreen;
     this.activeScreen = (newIndex < 0) ? 0 : newIndex;
     this.changePageDisplay(e);
   }
 
-  changePageDisplay(event = null) {
-    if (event && this.screenElements[this.activeScreen].id === this.PRIZES_HREF && !document.querySelector(`.screen--prizes.active`)) {
-      this.animatedBg.classList.add(`screen__bg-fill--active`);
+  changePageDisplay(event) {
+    const activeScreen = this.screenElements[this.activeScreen];
+    const prevActiveScreen = this.screenElements[this.prevActiveScreen];
+    const needRunAnimation = activeScreen.id === this.PRIZES_HREF && prevActiveScreen.id === this.STORY_HREF;
+    const sameScreen = activeScreen.id === prevActiveScreen.id;
+
+    if (!!event && needRunAnimation && !sameScreen) {
+      this.animatedBg.runAnimation();
+
       setTimeout(() => {
         this.changeVisibilityDisplay();
-        this.animatedBg.classList.remove(`screen__bg-fill--active`);
-      }, 300);
+      }, FILLED_BG_ANIMATION_DELAY);
     } else {
+      this.animatedBg.destroyAnimation();
       this.changeVisibilityDisplay();
     }
     this.changeActiveMenuItem();
