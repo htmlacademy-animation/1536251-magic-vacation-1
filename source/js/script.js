@@ -9,6 +9,7 @@ import result from './modules/result.js';
 import form from './modules/form.js';
 import social from './modules/social.js';
 import FullPageScroll from './modules/full-page-scroll';
+import TextSurfacing from "./modules/TextSurfacing";
 
 // init modules
 body();
@@ -23,3 +24,8 @@ social();
 
 const fullPageScroll = new FullPageScroll();
 fullPageScroll.init();
+
+const intoTitle = new TextSurfacing(document.querySelector(`.intro__title`), `transform`, 1000, `intro__title--active`);
+setTimeout(() => {
+  intoTitle.runAnimation();
+}, 500);
