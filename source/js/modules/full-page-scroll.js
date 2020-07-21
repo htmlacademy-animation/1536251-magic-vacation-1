@@ -1,9 +1,10 @@
 import throttle from 'lodash/throttle';
 
 export default class FullPageScroll {
-  constructor() {
+  constructor(animations = {}) {
     this.THROTTLE_TIMEOUT = 2000;
     this.PRIZES_HREF = `prizes`;
+    this.animations = animations;
 
     this.screenElements = document.querySelectorAll(`.screen:not(.screen--result)`);
     this.menuElements = document.querySelectorAll(`.page-header__menu .js-menu-link`);
@@ -26,6 +27,7 @@ export default class FullPageScroll {
     this.reCalculateActiveScreenPosition(evt.deltaY);
     if (currentPosition !== this.activeScreen) {
       this.changePageDisplay();
+      this.callPageAnimations();
     }
   }
 
@@ -33,6 +35,7 @@ export default class FullPageScroll {
     const newIndex = Array.from(this.screenElements).findIndex((screen) => location.hash.slice(1) === screen.id);
     this.activeScreen = (newIndex < 0) ? 0 : newIndex;
     this.changePageDisplay(e);
+    this.callPageAnimations();
   }
 
   changePageDisplay(event = null) {
@@ -84,5 +87,16 @@ export default class FullPageScroll {
     } else {
       this.activeScreen = Math.max(0, --this.activeScreen);
     }
+  }
+
+  callPageAnimations() {
+    setTimeout(() => {
+      const activeId = this.screenElements[this.activeScreen].id;
+      const func = this.animations[activeId];
+
+      if (typeof func === `function`) {
+        func();
+      }
+    }, 100);
   }
 }

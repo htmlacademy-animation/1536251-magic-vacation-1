@@ -35,13 +35,16 @@
 
   &-word {
     display: block;
+    height: 12rem;
+
+    line-height: 15rem;
     white-space: nowrap;
+
     overflow: hidden;
 
     & span {
       display: inline-block;
       transform: translate3d(0, 1.2em, 0);
-      will-change: transform;
 
       .intro__title--active & {
         transform: translate3d(0, 0, 0);
