@@ -1,3 +1,5 @@
+$animated-bg-animation-delay: 400;
+
 .screen {
   position: relative;
   display: flex;
@@ -304,6 +306,8 @@
   background-size: cover;
   background-position: center;
 
+  z-index: 0;
+
   @media (orientation: portrait) {
     background-size: auto calc(100vh - 13.8rem), 100% 25rem;
     background-position: top center, bottom center;
@@ -362,5 +366,30 @@
 
 .screen--rules {
   background-color: $c-dark;
+}
+
+.screen-overlay {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+
+  background-color: $c-dark;
+
+  transition-property: height;
+  transition-duration: #{$animated-bg-animation-delay}ms;
+  transition-timing-function: ease-out;
+
+  z-index: 0;
+
+  &--hidden {
+    opacity: 0;
+    z-index: -1;
+  }
+
+  &--active {
+    height: 100vh;
+  }
 }
 
