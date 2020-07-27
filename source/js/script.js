@@ -1,5 +1,6 @@
 // modules
 import body from "./modules/body";
+import intro from "./modules/intro";
 import mobileHeight from './modules/mobile-height-adjust.js';
 import slider from './modules/slider.js';
 import menu from './modules/menu.js';
@@ -9,11 +10,10 @@ import result from './modules/result.js';
 import form from './modules/form.js';
 import social from './modules/social.js';
 import FullPageScroll from './modules/full-page-scroll';
-import animations from "./modules/animations";
-import TextSurfacing from "./modules/TextSurfacing";
 
 // init modules
 body();
+intro();
 mobileHeight();
 slider();
 menu();
@@ -23,20 +23,5 @@ result();
 form();
 social();
 
-const fullPageScroll = new FullPageScroll(animations);
+const fullPageScroll = new FullPageScroll();
 fullPageScroll.init();
-
-
-// const intoTitle = new TextSurfacing(
-//     document.querySelector(`.intro__title`),
-//     {
-//       property: `transform`,
-//       duration: 500,
-//       timingFunction: `cubic-bezier(.32,.92,.56,.94)`
-//     },
-//     `intro__title--active`
-// );
-//
-// setTimeout(() => {
-//   intoTitle.runAnimation();
-// }, 500);
