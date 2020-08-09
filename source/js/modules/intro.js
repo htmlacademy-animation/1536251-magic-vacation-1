@@ -25,16 +25,14 @@ export default () => {
   );
   let prevScreenName = ``;
 
+  const animation = () => {
+    titleAnimation.runAnimation();
+    setTimeout(() => dateAnimation.runAnimation(), 1100);
+  };
+
   document.body.addEventListener(`screenChanged`, ({detail = {}}) => {
     if (detail.screenName === SCREEN_NAME) {
-      setTimeout(() => {
-        titleAnimation.runAnimation();
-      }, 100);
-
-      setTimeout(() => {
-        dateAnimation.runAnimation();
-      }, 1100);
-
+      window.requestAnimationFrame(animation);
     } else if (detail.screenName !== prevScreenName && prevScreenName === SCREEN_NAME) {
       titleAnimation.destroyAnimation();
       dateAnimation.destroyAnimation();
