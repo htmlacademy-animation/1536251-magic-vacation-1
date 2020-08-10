@@ -1,5 +1,6 @@
 // modules
 import body from "./modules/body";
+import intro from "./modules/intro";
 import mobileHeight from './modules/mobile-height-adjust.js';
 import slider from './modules/slider.js';
 import menu from './modules/menu.js';
@@ -12,6 +13,7 @@ import FullPageScroll from './modules/full-page-scroll';
 
 // init modules
 body();
+intro();
 mobileHeight();
 slider();
 menu();
