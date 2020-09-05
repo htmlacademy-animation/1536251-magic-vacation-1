@@ -74,3 +74,23 @@
     opacity: 1;
   }
 }
+
+@keyframes slider-prev {
+  from {
+    transform: translate3d(-50px, 0, 0) rotate(-180deg);
+  }
+
+  to {
+    transform: none;
+  }
+}
+
+@keyframes slider-next {
+  from {
+    transform: translate3d(50px, 0, 0) rotate(180deg);
+  }
+
+  to {
+    transform: none;
+  }
+}

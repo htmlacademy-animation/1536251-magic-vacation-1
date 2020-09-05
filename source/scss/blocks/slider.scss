@@ -170,6 +170,23 @@
     height: 40px;
   }
 
+  .screen--story.active & {
+    opacity: 0;
+
+    animation-duration: 300ms, 200ms;
+    animation-fill-mode: forwards, forwards;
+    animation-delay: 600ms, 600ms;
+    animation-timing-function: cubic-bezier(0.54, 0.93, 0.63, 1.17), ease-out;
+
+    &--prev {
+      animation-name: slider-prev, fade;
+    }
+
+    &--next {
+      animation-name: slider-next, fade;
+    }
+  }
+
   &::before {
     @include center;
     content: "";
@@ -179,6 +196,9 @@
     border: 2px solid $c-light;
     border-radius: 50%;
     z-index: -1;
+
+    transition-property: width, height;
+    transition-duration: 0.3s;
   }
 
   svg {
@@ -242,6 +262,14 @@
   font-weight: 400;
   font-size: 2.4rem;
   line-height: 4rem;
+  opacity: 0;
+
+  .screen--story.active & {
+    animation-name: fade;
+    animation-duration: 300ms;
+    animation-delay: 600ms;
+    animation-fill-mode: forwards;
+  }
 
   @media (min-width: $stop-scaling) {
     bottom: 28px;
